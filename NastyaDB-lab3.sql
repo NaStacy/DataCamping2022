@@ -330,6 +330,18 @@ INSERT INTO emp (
     FROM
         emp commit;
 
+
+
+INSERT INTO dept( deptno , dname , loc) 
+ SELECT deptno , dname , loc 
+ FROM scott.dept; 
+COMMIT;
+--data from scott.emp:
+INSERT INTO emp ( empno, ename, job, mgr, hiredate, sal, comm, deptno ) 
+ SELECT rownum, ename, job, mgr, hiredate, sal, comm, deptno 
+ FROM scott.emp ;
+COMMIT; 
+
 SELECT
     *
 FROM
