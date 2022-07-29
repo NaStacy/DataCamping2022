@@ -1,0 +1,473 @@
+-------------------task2-------------------------------
+DROP TABLESPACE ts_sa_customers_data_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+
+DROP TABLESPACE ts_sa_orders_data_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+
+DROP TABLESPACE ts_sa_employees_data_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+
+DROP USER sa_clients CASCADE;
+
+DROP USER sa_orders CASCADE;
+
+DROP USER sa_employees CASCADE;
+
+
+CREATE TABLESPACE ts_sa_customers_data_01
+DATAFILE '/oracle/u02/oradata/ALogachevadb/ts_sa_customers_data_01.dat'
+SIZE 100M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_sa_customers
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_customers_data_01;
+
+GRANT CONNECT,RESOURCE TO u_sa_customers;
+
+CREATE TABLESPACE ts_sa_orders_data_01
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sa_orders_data_01.dat'
+SIZE 200M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_sa_orders
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_orders_data_01;
+
+GRANT CONNECT,RESOURCE TO u_sa_orders;
+
+CREATE TABLESPACE ts_sa_employees_data_01
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sa_employees_data_01.dat'
+SIZE 100M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_sa_employees
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_employees_data_01;
+
+GRANT CONNECT,RESOURCE TO u_sa_employees;
+
+------------------------task 3---------------------------
+CREATE TABLESPACE ts_dw_cl
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_dw_cl.dat'
+SIZE 200M
+ AUTOEXTEND ON NEXT 100M
+ SEGMENT SPACE MANAGEMENT AUTO;
+ 
+ CREATE USER u_dw_cl
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_dw_cl;
+
+GRANT CONNECT,RESOURCE, CREATE VIEW TO u_dw_cl;
+
+------------------------task 4---------------------------
+CREATE TABLESPACE ts_dw_data_03
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_dw_data_03.dat'
+SIZE 200M
+ AUTOEXTEND ON NEXT 100M
+ SEGMENT SPACE MANAGEMENT AUTO;
+ 
+ CREATE USER u_dw_data_03
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_dw_data_03;
+
+GRANT CONNECT,RESOURCE TO u_dw_data_03;
+
+------------------------task 5---------------------------
+CREATE TABLESPACE ts_sal_dw_cl
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sal_dw_cl.dat'
+SIZE 200M
+ AUTOEXTEND ON NEXT 100M
+ SEGMENT SPACE MANAGEMENT AUTO;
+ 
+ CREATE USER u_sal_dw_cl
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sal_dw_cl;
+
+GRANT CONNECT,RESOURCE TO u_sal_dw_cl;
+
+
+CREATE TABLESPACE ts_sal_cl
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sal_cl.dat'
+SIZE 200M
+ AUTOEXTEND ON NEXT 100M
+ SEGMENT SPACE MANAGEMENT AUTO;
+ 
+ CREATE USER u_sal_cl
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sal_cl;
+
+GRANT CONNECT,RESOURCE TO u_sal_cl;
+
+
+------------------------task 6---------------------------
+--DROP TABLESPACE ts_sa_dim_client_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+--
+--DROP USER dm_client CASCADE;
+--
+--DROP TABLESPACE ts_sa_fct_order_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+--
+--DROP USER dm_order CASCADE;
+--
+--DROP TABLESPACE ts_sa_dim_employee_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+--
+--DROP USER dm_employee CASCADE;
+--
+--DROP TABLESPACE ts_sa_dim_restaurant_01 INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+--
+--DROP USER dm_restaurant CASCADE;
+--
+--DROP TABLESPACE ts_sa_dim_service INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+--
+--DROP USER u_dim_service CASCADE;
+--
+--DROP TABLESPACE TS_SA_DIM_SERVICE INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+--
+--DROP USER dm_payment_method CASCADE;
+
+CREATE TABLESPACE ts_sa_dim_salon
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sa_dim_salon.dat'
+SIZE 150M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_dim_salon
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_dim_salon;
+
+GRANT CONNECT,RESOURCE, CREATE VIEW TO u_dim_salon;
+
+CREATE TABLESPACE ts_sa_dim_service
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sa_dim_service.dat'
+SIZE 150M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_dim_service
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_dim_service;
+
+GRANT CONNECT,RESOURCE, CREATE VIEW TO u_dim_service;
+
+CREATE TABLESPACE ts_sa_dim_product
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sa_dim_product.dat'
+SIZE 150M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_dim_product
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_dim_product;
+
+GRANT CONNECT,RESOURCE, CREATE VIEW TO u_dim_product;
+
+CREATE TABLESPACE ts_sa_dim_crud
+DATAFILE '/oracle/u02/oradata/ALogachevadb/db_ts_sa_dim_crud.dat'
+SIZE 150M
+AUTOEXTEND ON NEXT 50M
+SEGMENT SPACE MANAGEMENT AUTO;
+
+CREATE USER u_dim_crud
+  IDENTIFIED BY "%PWD%"
+    DEFAULT TABLESPACE ts_sa_dim_crud;
+
+GRANT CONNECT,RESOURCE, CREATE VIEW TO u_dim_crud;
+
+------------------------task 7---------------------------
+/* ---------------------------------------------------- */
+/*  Generated by Enterprise Architect Version 13.0 		*/
+/*  Created On : 27-июль-2022 23:52:55 				*/
+/*  DBMS       : Oracle 						*/
+/* ---------------------------------------------------- */
+
+/* Drop Tables */
+GRANT UNLIMITED TABLESPACE TO u_dim_crud;
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.address CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.category CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.country CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.language CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.product CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.sales CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.salon CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+begin
+	EXECUTE IMMEDIATE 'DROP TABLE u_dim_crud.service CASCADE CONSTRAINTS';
+	EXCEPTION WHEN OTHERS THEN NULL;
+end;  
+/
+
+/* Create Tables */
+
+CREATE TABLE u_dim_crud.address
+(
+	ADDRESS_ID NUMBER(8,2) NOT NULL,
+	ADDRESS_DISTRICT VARCHAR2(50) NOT NULL,
+	ADDRESS_CITY VARCHAR2(50) NOT NULL,
+	ADRESS_STREET VARCHAR2(50) NOT NULL,
+	ADDRESS_BUILDING NUMBER(8) NOT NULL
+)
+tablespace ts_sa_dim_crud;
+
+
+CREATE TABLE  u_dim_crud.category
+(
+	CATEGORY_ID NUMBER(8,2) NOT NULL,
+	CATEGORY_NAME VARCHAR2(50) NOT NULL
+)
+tablespace ts_sa_dim_crud;
+
+CREATE TABLE  u_dim_crud.country
+(
+	COUNTRY_ID NUMBER(8,2) NOT NULL,
+	COUNTRY_NAME VARCHAR2(50) NOT NULL,
+	ADDRESS_ID NUMBER(8,2) NULL
+)
+tablespace ts_sa_dim_crud;
+
+CREATE TABLE  u_dim_crud.language
+(
+	LANGUAGE_ID NUMBER(8,2) NOT NULL,
+	LANGUAGE_NAME VARCHAR2(50) NOT NULL
+)
+tablespace ts_sa_dim_crud;
+
+CREATE TABLE  u_dim_crud.product
+(
+	PRODUCT_ID NUMBER(8,2) NOT NULL,
+	PRODUCT_CATEGORY NUMBER(8) NOT NULL,
+	PRODUCT_NAME VARCHAR2(50) NOT NULL,
+	PRODUCT_PRISE NUMBER(8) NOT NULL,
+	PRODUCT_DESCRIPTION VARCHAR(200) NULL
+)
+tablespace ts_sa_dim_crud;
+
+CREATE TABLE  u_dim_crud.sales
+(
+	SALES_ID NUMBER(8,2) NOT NULL,
+	SALES_DATE DATE NOT NULL,
+	SALES_TIME TIMESTAMP(6) WITH LOCAL TIME ZONE NOT NULL,
+	SALES_BUYER VARCHAR2(50) NULL,
+	SALES_SUM NUMBER(8) NOT NULL,
+	SALES_LIST ANYDATASET NULL
+)
+tablespace ts_sa_dim_crud;
+
+CREATE TABLE  u_dim_crud.salon
+(
+	SALON_ID NUMBER(8,2) NOT NULL,
+	COUNTRY_ID NUMBER(8,2) NULL,
+	LANGUAGE_ID NUMBER(8,2) NULL,
+	SERVICE_ID NUMBER(8,2) NULL,
+	PRODUCT_ID NUMBER(8,2) NULL,
+	SALES_ID NUMBER(8,2) NULL
+)
+tablespace ts_sa_dim_crud;
+
+CREATE TABLE  u_dim_crud.service
+(
+	SERVICE_ID NUMBER(8,2) NOT NULL,
+	SERVICE_NAME VARCHAR2(50) NOT NULL,
+	SERVICE_CATEGORY NUMBER(8) NOT NULL,
+	SERVICE_PRISE NUMBER(8) NOT NULL,
+	SERVICE_DESCRIPTION VARCHAR(200) NULL
+)
+tablespace ts_sa_dim_crud;
+
+/* Create Primary Keys, Indexes, Uniques, Checks, Triggers */
+
+ALTER TABLE  u_dim_crud.address
+ ADD CONSTRAINT PK_address
+	PRIMARY KEY (ADDRESS_ID) 
+ USING INDEX
+;
+
+ALTER TABLE  u_dim_crud.category
+ ADD CONSTRAINT PK_service_cate_01
+	PRIMARY KEY (CATEGORY_ID) 
+ USING INDEX
+;
+
+ALTER TABLE  u_dim_crud.country 
+ ADD CONSTRAINT PK_country
+	PRIMARY KEY (COUNTRY_ID) 
+ USING INDEX
+;
+
+CREATE INDEX u_dim_crud.IXFK_country_address   
+ ON  country (ADDRESS_ID) 
+;
+
+ALTER TABLE  u_dim_crud.language 
+ ADD CONSTRAINT PK_language
+	PRIMARY KEY (LANGUAGE_ID) 
+ USING INDEX
+;
+
+ALTER TABLE  u_dim_crud.product 
+ ADD CONSTRAINT PK_product
+	PRIMARY KEY (PRODUCT_ID) 
+ USING INDEX
+;
+
+CREATE INDEX u_dim_crud.IXFK_product_category   
+ ON  u_dim_crud.product (PRODUCT_CATEGORY) 
+;
+
+ALTER TABLE  u_dim_crud.sales 
+ ADD CONSTRAINT PK_sales
+	PRIMARY KEY (SALES_ID) 
+ USING INDEX
+;
+
+ALTER TABLE  u_dim_crud.salon 
+ ADD CONSTRAINT PK_services
+	PRIMARY KEY (SALON_ID) 
+ USING INDEX
+;
+
+CREATE INDEX u_dim_crud.IXFK_salon_country   
+ ON  u_dim_crud.salon (COUNTRY_ID) 
+;
+
+CREATE INDEX u_dim_crud.IXFK_salon_language   
+ ON  u_dim_crud.salon (LANGUAGE_ID) 
+;
+
+CREATE INDEX u_dim_crud.IXFK_salon_product   
+ ON  u_dim_crud.salon (PRODUCT_ID) 
+;
+
+CREATE INDEX u_dim_crud.IXFK_salon_sales   
+ ON  u_dim_crud.salon (SALES_ID) 
+;
+
+CREATE INDEX u_dim_crud.IXFK_salon_service   
+ ON  u_dim_crud.salon (SERVICE_ID) 
+;
+
+ALTER TABLE  u_dim_crud.service 
+ ADD CONSTRAINT PK_service
+	PRIMARY KEY (SERVICE_ID) 
+ USING INDEX
+;
+
+CREATE INDEX u_dim_crud.IXFK_service_category   
+ ON  u_dim_crud.service (SERVICE_CATEGORY) 
+;
+
+/* Create Foreign Key Constraints */
+
+ALTER TABLE  u_dim_crud.country 
+ ADD CONSTRAINT FK_country_address
+	FOREIGN KEY (ADDRESS_ID) REFERENCES  u_dim_crud.address (ADDRESS_ID)
+;
+
+ALTER TABLE  u_dim_crud.product 
+ ADD CONSTRAINT FK_product_category
+	FOREIGN KEY (PRODUCT_CATEGORY) REFERENCES  u_dim_crud.category (CATEGORY_ID)
+;
+
+ALTER TABLE  u_dim_crud.salon 
+ ADD CONSTRAINT FK_salon_country
+	FOREIGN KEY (COUNTRY_ID) REFERENCES  u_dim_crud.country (COUNTRY_ID)
+;
+
+ALTER TABLE  u_dim_crud.salon 
+ ADD CONSTRAINT FK_salon_language
+	FOREIGN KEY (LANGUAGE_ID) REFERENCES  u_dim_crud.language (LANGUAGE_ID)
+;
+
+ALTER TABLE  u_dim_crud.salon 
+ ADD CONSTRAINT FK_salon_product
+	FOREIGN KEY (PRODUCT_ID) REFERENCES  u_dim_crud.product (PRODUCT_ID)
+;
+
+ALTER TABLE  u_dim_crud.salon 
+ ADD CONSTRAINT FK_salon_sales
+	FOREIGN KEY (SALES_ID) REFERENCES  u_dim_crud.sales (SALES_ID)
+;
+
+ALTER TABLE  u_dim_crud.salon 
+ ADD CONSTRAINT FK_salon_service
+	FOREIGN KEY (SERVICE_ID) REFERENCES  u_dim_crud.service (SERVICE_ID)
+;
+
+ALTER TABLE  u_dim_crud.service 
+ ADD CONSTRAINT FK_service_category
+	FOREIGN KEY (SERVICE_CATEGORY) REFERENCES  u_dim_crud.category (CATEGORY_ID)
+;
+
+---------------------lab 9. creating partitions-------------------
+DROP TABLE u_dim_crud.sales cascade constraints;
+
+CREATE TABLE u_dim_crud.sales
+(
+	SALES_ID NUMBER(8,2) NOT NULL,
+	SALES_DATE DATE NOT NULL,
+	SALES_TIME TIMESTAMP(6) WITH LOCAL TIME ZONE NOT NULL,
+	SALES_BUYER_ID NUMBER GENERATED BY DEFAULT ON NULL AS IDENTITY,
+	SALES_SUM NUMBER(8) NOT NULL,
+	SALES_LIST ANYDATASET NULL,
+    CONSTRAINT PK_sales PRIMARY KEY ( SALES_ID ) ENABLE
+)
+    
+PARTITION BY RANGE (SALES_SUM) 
+subpartition by hash(SALES_BUYER_ID) subpartitions 4
+( 
+    PARTITION small VALUES LESS THAN(50) 
+    ( 
+        subpartition small_sub_1, 
+        subpartition small_sub_2,
+        subpartition small_sub_3,
+        subpartition small_sub_4 
+    ), 
+    PARTITION medium VALUES LESS THAN(200)  
+    ( 
+        subpartition medium_sub_1, 
+        subpartition medium_sub_2,
+        subpartition medium_sub_3,
+        subpartition medium_sub_4 
+    ), 
+    PARTITION large VALUES LESS THAN(maxvalue)  
+    ( 
+        subpartition large_sub_1, 
+        subpartition large_sub_2,
+        subpartition large_sub_3,
+        subpartition large_sub_4 
+    )
+);
