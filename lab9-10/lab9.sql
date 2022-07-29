@@ -320,7 +320,6 @@ interval FROM all_tab_partitions where table_name = 'AUDIT_TRAIL';
 
 
 -----------------------REFERENCE PARTITIONING-----------------------------
-
 create table orders
   (
     order#          number primary key,
@@ -363,10 +362,8 @@ create table order_line_items
 insert into order_line_items values (1, 1, to_date('01-01-2009','dd-mm-yyyy'), 'application data...');
 insert into order_line_items values (2, 1,  to_date('01-06-2010','dd-mm-yyyy'), 'application data...');
 
-
 SELECT partition_name, tablespace_name, table_name FROM all_tab_partitions 
 where table_name in ('ORDER_LINE_ITEMS', 'ORDERS') ;
-
 
 --move
 ALTER TABLE orders MOVE PARTITION part_2010
